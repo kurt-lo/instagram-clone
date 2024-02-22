@@ -52,10 +52,27 @@ const ProfilePost = ({ img }) => {
                                     </Box>
                                 </Flex>
                                 <Divider my={4} bg='#DBDBDB' />
-                                <VStack w='full' alignItems='start' maxH='22rem' overflowY='hidden'>
+                                <VStack w='full' alignItems='start' maxH='22rem' overflowY='scroll'>
                                     <Comment createdAt='2d ago' username='kurtlo' profilepic={profilePic} text='hello wazzup!' />
                                     <Comment createdAt='2d ago' username='kurtlo' profilepic={profilePic} text='hello wazzup!' />
                                     <Comment createdAt='2d ago' username='kurtlo' profilepic={profilePic} text='hello wazzup!' />
+                                    <Comment createdAt='2d ago' username='kurtlo' profilepic={profilePic} text='hello wazzup!' />
+                                    <Comment createdAt='2d ago' username='kurtlo' profilepic={profilePic} text='hello wazzup!' />
+                                    <Comment createdAt='2d ago' username='kurtlo' profilepic={profilePic} text='hello wazzup!' />
+                                    <Comment createdAt='2d ago' username='kurtlo' profilepic={profilePic} text='hello wazzup!' />
+                                    <Comment createdAt='2d ago' username='kurtlo' profilepic={profilePic} text='hello wazzup!' />
+                                    <Comment createdAt='2d ago' username='kurtlo' profilepic={profilePic} text='hello wazzup!' />
+                                    <Comment createdAt='2d ago' username='kurtlo' profilepic={profilePic} text='hello wazzup!' />
+                                    <Comment createdAt='2d ago' username='kurtlo' profilepic={profilePic} text='hello wazzup!' />
+                                    <Comment createdAt='2d ago' username='kurtlo' profilepic={profilePic} text='hello wazzup!' />
+                                    <Comment createdAt='2d ago' username='kurtlo' profilepic={profilePic} text='hello wazzup!' />
+                                    <Comment createdAt='2d ago' username='kurtlo' profilepic={profilePic} text='hello wazzup!' />
+                                    <Comment createdAt='2d ago' username='kurtlo' profilepic={profilePic} text='hello wazzup!' />
+                                    <Comment createdAt='2d ago' username='kurtlo' profilepic={profilePic} text='hello wazzup!' />
+                                    <Comment createdAt='2d ago' username='kurtlo' profilepic={profilePic} text='hello wazzup!' />
+                                    <Comment createdAt='2d ago' username='kurtlo' profilepic={profilePic} text='hello wazzup!' />
+                                    <Comment createdAt='2d ago' username='kurtlo' profilepic={profilePic} text='hello wazzup!' />
+
                                 </VStack>
                                 <Divider my={4} bg='#DBDBDB' />
                                 <PostFooter isProfilePage={true} />
