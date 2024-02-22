@@ -2,13 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
+import { BrowserRouter } from 'react-router-dom'
 import { ChakraProvider } from '@chakra-ui/react'
 import { extendTheme } from '@chakra-ui/react'
 import { mode } from '@chakra-ui/theme-tools'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import LoginPage from './pages/LoginPage.jsx'
-import LayoutPage from './pages/Layout/LayoutPage.jsx'
-import ProfilePage from './pages/ProfilePage/ProfilePage.jsx'
 
 const styles = {
   global: (props) => ({
@@ -31,13 +28,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <ChakraProvider theme={theme}>
-        <LayoutPage>
-          <Routes>
-            <Route path='/' element={<App />} />
-            <Route path='/login' element={<LoginPage />} />
-            <Route path='/:username' element={<ProfilePage />} />
-          </Routes>
-        </LayoutPage>
+        <App />
       </ChakraProvider>
     </BrowserRouter>
   </React.StrictMode>,

@@ -1,10 +1,13 @@
-import { Box, Flex, Link as ChakLink, Avatar, Tooltip } from '@chakra-ui/react'
+import { Box, Flex, Link as ChakLink, Avatar, Tooltip, Button } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { InstagramMobileLogo, InstagramLogo, SearchLogo, NotificationsLogo, CreatePostLogo } from '../assets/images'
 import { MdHomeFilled } from "react-icons/md";
 import { IoLogOutOutline } from "react-icons/io5";
+import useLogout from '../hooks/useLogout';
 
 const Sidebar = () => {
+
+    const {handleLogout, isLoggingOut } = useLogout();
 
     const sideBarItems = [
         {
@@ -38,7 +41,7 @@ const Sidebar = () => {
 
     return (
         <Box h={'100vh'} borderRight={'1px solid #DBDBDB'} position={'sticky'} top={0} left={0} py={8} px={{ base: 2, md: 4 }}>
-            <Flex direction={'column'} gap={10} w={'full'} h={'full'}>
+            <Flex direction={'column'} gap={10} w={'full'} h={'full'} cursor='pointer'>
                 <ChakLink top='/' as={Link} pl={2} cursor={'pointer'} display={{ base: 'none', md: 'block' }}>
                     <InstagramLogo />
                 </ChakLink>
@@ -84,10 +87,8 @@ const Sidebar = () => {
                     display={{ base: 'block', md: 'none' }}
                     ml={1}
                 >
-                    <ChakLink
-                        display={'flex'}
-                        to='/login'
-                        as={Link}
+                    <Flex
+                        onClick={handleLogout}
                         alignItems={'center'}
                         justifyContent={{ base: 'center', md: 'flex-start' }}
                         gap={4}
@@ -98,10 +99,12 @@ const Sidebar = () => {
                         _hover={{ bg: '#DBDBDB' }}
                     >
                         <IoLogOutOutline size={25} />
-                        <Box display={{ base: 'none', md: 'block' }}>
+                        <Button variant="unstyled" display={{ base: 'none', md: 'block' }}
+                            isLoading={isLoggingOut}
+                        >
                             Logout
-                        </Box>
-                    </ChakLink>
+                        </Button>
+                    </Flex>
                 </Tooltip>
             </Flex>
         </Box>

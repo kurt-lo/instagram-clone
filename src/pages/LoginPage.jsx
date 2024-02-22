@@ -2,7 +2,7 @@ import { Flex, Container, Box, Image, VStack, Link } from '@chakra-ui/react'
 import loginImage from '/loginImage.png'
 import playstore from '/playstore.png'
 import microsoft from '/microsoft.png'
-import LoginForm from '../components/LoginForm'
+import LoginForm from '../components/Authentication/LoginForm'
 
 const LoginPage = () => {
     return (
