@@ -10,7 +10,7 @@ const HomePage = () => {
           <Posts />
         </Box>
         <Box flex={3} display={{ base: 'none', lg: 'block' }} maxW={'19rem'} mr={20}>
-          <SuggestedUsers />
+          {/* <SuggestedUsers /> */}
         </Box>
       </Flex>
     </Container>

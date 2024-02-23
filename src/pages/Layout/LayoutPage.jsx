@@ -1,9 +1,9 @@
 import { Flex, Box, Spinner } from '@chakra-ui/react'
-import Sidebar from '../../components/Sidebar'
 import { useLocation } from 'react-router-dom'
 import { auth } from '../../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import Navbar from '../../components/Navbar/Navbar'
+import Sidebar from '../../components/Sidebard/Sidebar'
 
 const LayoutPage = ({ children }) => {
 
