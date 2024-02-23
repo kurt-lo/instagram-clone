@@ -1,24 +1,35 @@
 import { Flex, Image, Text } from '@chakra-ui/react'
-import fbLogo from '/fblogo.png'
+import googleLogo from '/google.png'
 import { auth, firestore } from '../../firebase';
-import { useSignInWithFacebook } from 'react-firebase-hooks/auth'
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth'
 import useShowToast from '../../hooks/useShowToast';
 import useAuthStore from '../../store/authStore';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 
-const FbAuth = ({ prefix }) => {
+const GoogleAuth = ({ prefix }) => {
 
-    const [signInWithFacebook, user, loading, error] = useSignInWithFacebook(auth);
-    const showToast = useShowToast()
-    const loginUser = useAuthStore(state => state.login)
+    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+    const showToast = useShowToast();
+    const loginUser = useAuthStore(state => state.login)    
 
-    const fbAuthHandler = async () => {
+    const googleAuthHandler = async () => {
         try {
-            const newUser = await signInWithFacebook()
+            const newUser = await signInWithGoogle()
             if (!newUser && error) {
                 showToast('Error', error.message, 'error')
+                return
             }
-            if (newUser) {
+
+            const userRef = doc(firestore, 'users', newUser.user.uid)
+            const userSnap = await getDoc(userRef)
+
+            if (userSnap.exists()) {
+                // login the user if it exists
+                const userDocument = userSnap.data()
+                localStorage.setItem('user-info-ig-clone', JSON.stringify(userDocument))
+                loginUser(userDocument)
+            } else {
+                // register the user if new
                 const userDocument = {
                     uid: newUser.user.uid,
                     email: newUser.user.email,
@@ -43,15 +54,15 @@ const FbAuth = ({ prefix }) => {
     return (
         <>
             <Flex alignItems={'center'} cursor={'pointer'}
-                onClick={fbAuthHandler}
+                onClick={googleAuthHandler}
             >
-                <Image src={fbLogo} w={4} h={4} alt='Google logo' />
+                <Image src={googleLogo} w={4} h={4} alt='Google logo' />
                 <Text mx={2} color={'#385185'} fontSize={14} fontWeight={500}>
-                    {prefix} with Facebook
+                    {prefix} with Google
                 </Text>
             </Flex>
         </>
     )
 }
 
-export default FbAuth
+export default GoogleAuth

@@ -4,11 +4,13 @@ import LoginPage from './pages/LoginPage.jsx'
 import LayoutPage from './pages/Layout/LayoutPage.jsx'
 import ProfilePage from './pages/ProfilePage/ProfilePage.jsx'
 import HomePage from './pages/HomePage'
-import useAuthStore from './store/authStore.js'
+import { auth } from './firebase/index.js'
+import { useAuthState } from 'react-firebase-hooks/auth'
 
 function App() {
 
-  const authUser = useAuthStore(state => state.user)
+  // check if the user is logged in using the firebase not the zustand localstorage
+  const [authUser] = useAuthState(auth)
 
   return (
     <>

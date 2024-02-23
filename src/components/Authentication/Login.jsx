@@ -1,5 +1,7 @@
-import { Input, Button } from '@chakra-ui/react'
+import { Input, Button, Alert } from '@chakra-ui/react'
 import { useState } from 'react'
+import useLogin from '../../hooks/useLogin'
+import { CiSquareAlert } from "react-icons/ci";
 
 const Login = () => {
 
@@ -8,6 +10,8 @@ const Login = () => {
     password: '',
     confirmPassword: '',
   })
+
+  const { loading, error, login } = useLogin()
 
   return (
     <>
@@ -30,10 +34,18 @@ const Login = () => {
         fontSize={14}
         size='sm'
       />
+      {/* {error && (
+        <Alert status='error' fontSize={13} p={2} borderRadius={4}>
+          <CiSquareAlert size={12} />
+          {error.message}
+        </Alert>
+      )} */}
       <Button
         colorScheme='blue'
         w={'full'} size={'sm'}
         fontSize={14}
+        isLoading={loading}
+        onClick={() => login(inputForm)}
       >
         Login
       </Button>

@@ -3,7 +3,7 @@ import igLogo from '/logo.png'
 import { useState } from 'react'
 import Login from './Login'
 import Register from './Register'
-import FbAuth from './FbAuth'
+import GoogleAuth from './GoogleAuth'
 
 const LoginForm = () => {
 
@@ -24,7 +24,7 @@ const LoginForm = () => {
                         <Text mx={5} fontSize={13} color={'gray.500'}>OR</Text>
                         <Box flex={2} h={'1px'} bg={'#DBDBDB'} />
                     </Flex>
-                    <FbAuth />
+                    <GoogleAuth prefix={isLogin ? 'Log in' : 'Sign up'} />
                 </VStack>
             </Box>
             <Box border={'1px solid #DBDBDB'} borderRadius={4} padding={5}>

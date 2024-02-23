@@ -20,6 +20,15 @@ const useSignUpWithEmailPassword = () => {
             showToast('Error', 'Please provide all of the fields!', 'error')
             return;
         }
+
+        const usersRef = collection(firestore, 'users');
+        const q = query(usersRef, where('username', '==', inputForm.username))
+        const querySnapshot = await getDocs(q)
+        if (!querySnapshot.empty) {
+            showToast('Error', 'Username already exists!', 'error')
+            return
+        }
+
         try {
             const newUser = await createUserWithEmailAndPassword(inputForm.email, inputForm.password);
             if (!newUser && error) {

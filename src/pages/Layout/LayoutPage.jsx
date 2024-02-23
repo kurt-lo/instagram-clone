@@ -1,18 +1,22 @@
-import { Flex, Box } from '@chakra-ui/react'
+import { Flex, Box, Spinner } from '@chakra-ui/react'
 import Sidebar from '../../components/Sidebar'
 import { useLocation } from 'react-router-dom'
 import { auth } from '../../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
+import Navbar from '../../components/Navbar/Navbar'
 
 const LayoutPage = ({ children }) => {
 
     const { pathname } = useLocation()
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     const canRenderSidebar = pathname !== '/login' && user;
     const canRenderNavbar = !user && !loading && pathname !== '/login'
 
+    const isUserAuthenticated = !user && loading
+    if(isUserAuthenticated) return <PageLayoutSpinner />
+
     return (
-        <Flex>
+        <Flex flexDirection={canRenderNavbar ? 'column' : 'row'}>
             {/* render the sidebard except in the loginpage */}
             {canRenderSidebar ? (
                 <Box w={{ base: '4.5rem', md: '15rem' }}>
@@ -20,7 +24,7 @@ const LayoutPage = ({ children }) => {
                 </Box>
             ) : null}
             {canRenderNavbar && <Navbar />}
-            <Box flex={1} w={{ base: "calc(100% - 70px)", md: "calc(100% - 240px)" }}>
+            <Box flex={1} w={{ base: "calc(100% - 70px)", md: "calc(100% - 240px)" }} mx='auto'>
                 {children}
             </Box>
         </Flex>
@@ -28,3 +32,11 @@ const LayoutPage = ({ children }) => {
 }
 
 export default LayoutPage
+
+const PageLayoutSpinner = () => {
+	return (
+		<Flex flexDir='column' h='100vh' alignItems='center' justifyContent='center'>
+			<Spinner size='xl' />
+		</Flex>
+	);
+};
