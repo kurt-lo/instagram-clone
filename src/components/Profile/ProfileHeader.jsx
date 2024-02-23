@@ -2,6 +2,7 @@ import { Flex, AvatarGroup, Avatar, VStack, Text, Button, useDisclosure } from '
 import useUserProfileStore from '../../store/userProfileStore'
 import useAuthStore from '../../store/authStore'
 import EditProfile from './EditProfile'
+import useFollow from '../../hooks/useFollow'
 
 const ProfileHeader = () => {
 
@@ -9,6 +10,7 @@ const ProfileHeader = () => {
   const authUser = useAuthStore(state => state.user)
   const visitingOwnProfileAndAuthenticated = authUser && authUser.username === userProfile.username
   const visitingAnotherProfileAndAuthenticated = authUser && authUser.username !== userProfile.username
+  const { isFollowing, isLoading, handleFollowUser } = useFollow(userProfile?.uid)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -38,8 +40,11 @@ const ProfileHeader = () => {
               {userProfile.username}
             </Text>
             <Flex alignItems='center' justifyContent='center' gap={4}>
-              <Button bg='#DBDBDB' color='black' size={{ base: 'xs', md: 'sm' }}>
-                Follow
+              <Button bg='#DBDBDB' color='black' size={{ base: 'xs', md: 'sm' }}
+                isLoading={isLoading}
+                onClick={handleFollowUser}
+              >
+                {isFollowing ? 'Unfollow' : 'Follow'}
               </Button>
             </Flex>
           </Flex>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import useShowToast from "./useShowToast"
-import { collection, getDoc, getDocs, query, where } from "firebase/firestore"
+import { collection, getDocs, query, where } from "firebase/firestore"
 import { firestore } from "../firebase"
 import useUserProfileStore from '../store/userProfileStore'
 

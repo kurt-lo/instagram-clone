@@ -66,7 +66,7 @@ const EditProfile = ({ isOpen, onClose }) => {
 											<Avatar size='xl' src={selectedFile || authUser.profilePicURL} border={"2px solid white "} />
 										</Center>
 										<Center w='full'>
-											<Button w='full' bg='#DBDBDB' size='sm' onClick={() => fileRef.current.click()}>Change Profile Picture</Button>
+											<Button w='full' bg='#DBDBDB' size='sm' onClick={() => fileRef.current.click()}>Change photo</Button>
 										</Center>
                                         <Input type="file" hidden ref={fileRef} onChange={handleImageChange} />
 									</Stack>
